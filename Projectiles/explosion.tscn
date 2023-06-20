@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://coqyhhdokv6tv"]
+
+[ext_resource type="PackedScene" uid="uid://byqoegu6ktgcb" path="res://Projectiles/projectile.tscn" id="1_ov51r"]
+[ext_resource type="Script" path="res://Projectiles/explosion.gd" id="2_h51mr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kcadj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6pmg4"]
+
+[node name="Explosion" instance=ExtResource("1_ov51r")]
+script = ExtResource("2_h51mr")
+
+[node name="ProjectileMesh" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_kcadj")
+
+[node name="Hitbox" parent="." index="1" node_paths=PackedStringArray("hitbox_owner", "damage")]
+hitbox_owner = NodePath("..")
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("SphereShape3D_6pmg4")
+
+[node name="DamageStats" parent="." index="2"]
+damage = 5.0
+knockback = 8.0
+
+[node name="VelocityComponent" parent="." index="3" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+gravity = 30.0
+
+[node name="ProjectileTimer" parent="." index="4"]
+wait_time = 1.0
+
+[editable path="Hitbox"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Components/hitstun_component.gd" id="1_pldl7"]
+
+[node name="HitstunComponent" type="Node3D"]
+script = ExtResource("1_pldl7")
+
+[node name="HitstunTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

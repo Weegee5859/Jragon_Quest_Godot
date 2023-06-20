@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2v57iad0m8u0"]
+
+[node name="Gridmap" type="GridMap"]
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+collision_mask = 0

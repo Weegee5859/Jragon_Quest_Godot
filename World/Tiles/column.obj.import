@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bc3xc5a8s04ws"
+path="res://.godot/imported/column.obj-3d3580c89a5d82e93e6c630ac9d8b756.mesh"
+
+[deps]
+
+files=["res://.godot/imported/column.obj-3d3580c89a5d82e93e6c630ac9d8b756.mesh"]
+
+source_file="res://World/Tiles/column.obj"
+dest_files=["res://.godot/imported/column.obj-3d3580c89a5d82e93e6c630ac9d8b756.mesh", "res://.godot/imported/column.obj-3d3580c89a5d82e93e6c630ac9d8b756.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

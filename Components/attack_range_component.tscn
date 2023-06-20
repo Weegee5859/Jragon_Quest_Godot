@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bry5lkhxe8wqi"]
+
+[ext_resource type="Script" path="res://Components/attack_range_component.gd" id="1_ylq4d"]
+
+[node name="AttackRangeComponent" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ylq4d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

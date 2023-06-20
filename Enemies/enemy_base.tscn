@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwykeoajgh1fe"]
+
+[ext_resource type="Script" path="res://Enemies/EnemyBase.gd" id="1_e5l3o"]
+[ext_resource type="PackedScene" path="res://Components/velocity_component.tscn" id="2_bdrvi"]
+[ext_resource type="PackedScene" uid="uid://c5ypffqvrayep" path="res://Components/hurtbox.tscn" id="3_isnx6"]
+[ext_resource type="PackedScene" path="res://Components/health_component.tscn" id="4_mlv0j"]
+[ext_resource type="PackedScene" path="res://Components/hitstun_component.tscn" id="5_seq1n"]
+[ext_resource type="PackedScene" uid="uid://bry5lkhxe8wqi" path="res://Components/attack_range_component.tscn" id="6_0qpfc"]
+[ext_resource type="PackedScene" uid="uid://5s2gsojtf10v" path="res://damage_stats.tscn" id="7_x6g0y"]
+[ext_resource type="PackedScene" uid="uid://jrt27ykkdi0n" path="res://Projectiles/projectile_spawner_component.tscn" id="8_8iul8"]
+
+[node name="EnemyBase" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_e5l3o")
+
+[node name="EnemyCollision" type="CollisionShape3D" parent="."]
+
+[node name="EnemyBase" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyBase"]
+skeleton = NodePath("../..")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_bdrvi")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_isnx6")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_mlv0j")]
+
+[node name="HitstunComponent" parent="." instance=ExtResource("5_seq1n")]
+
+[node name="AttackRangeComponent" parent="." instance=ExtResource("6_0qpfc")]
+
+[node name="DamageStats" parent="." instance=ExtResource("7_x6g0y")]
+
+[node name="ProjectileSpawnerComponent" parent="." instance=ExtResource("8_8iul8")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="UIBase" type="Node3D" parent="."]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cjrmw1ddxf12u"]
+
+[ext_resource type="PackedScene" uid="uid://bwykeoajgh1fe" path="res://Enemies/enemy_base.tscn" id="1_2ll8d"]
+[ext_resource type="Script" path="res://Enemies/zombie.gd" id="2_7bo6r"]
+[ext_resource type="PackedScene" uid="uid://jl48e5efjgfq" path="res://Components/Hitbox.tscn" id="3_hifna"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ihkhl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_b6582"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uoffc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qae87"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ga7ve"]
+
+[node name="Zombie" instance=ExtResource("1_2ll8d")]
+script = ExtResource("2_7bo6r")
+
+[node name="EnemyCollision" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_ihkhl")
+
+[node name="MeshInstance3D" parent="EnemyBase" index="0"]
+mesh = SubResource("CapsuleMesh_b6582")
+
+[node name="VelocityComponent" parent="." index="2" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+default_speed = 1.0
+
+[node name="Hurtbox" parent="." index="3" node_paths=PackedStringArray("health_component", "hitstun_component", "velocity_component", "hurtbox_owner")]
+health_component = NodePath("../HealthComponent")
+hitstun_component = NodePath("../HitstunComponent")
+velocity_component = NodePath("../VelocityComponent")
+hurtbox_owner = NodePath("..")
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_uoffc")
+
+[node name="HealthComponent" parent="." index="4" node_paths=PackedStringArray("healthOwner")]
+max_health = 5
+healthOwner = NodePath("..")
+
+[node name="CollisionShape3D" parent="AttackRangeComponent" index="0"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_qae87")
+
+[node name="Hitbox" parent="." index="8" node_paths=PackedStringArray("hitbox_owner", "damage") instance=ExtResource("3_hifna")]
+hitbox_owner = NodePath("..")
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("BoxShape3D_ga7ve")
+
+[editable path="Hurtbox"]
+[editable path="AttackRangeComponent"]
+[editable path="Hitbox"]

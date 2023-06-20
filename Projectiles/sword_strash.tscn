@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4iwloj1rsj2w"]
+
+[ext_resource type="PackedScene" uid="uid://byqoegu6ktgcb" path="res://Projectiles/projectile.tscn" id="1_am1f7"]
+[ext_resource type="Script" path="res://Projectiles/sword_strash.gd" id="2_45gh2"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_b1w8b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_by3qj"]
+
+[node name="SwordStrash" instance=ExtResource("1_am1f7")]
+script = ExtResource("2_45gh2")
+
+[node name="ProjectileMesh" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0)
+mesh = SubResource("PrismMesh_b1w8b")
+
+[node name="Hitbox" parent="." index="1" node_paths=PackedStringArray("hitbox_owner", "damage")]
+hitbox_owner = NodePath("..")
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_by3qj")
+
+[node name="DamageStats" parent="." index="2"]
+knockback = 2.0
+
+[node name="VelocityComponent" parent="." index="3" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+default_speed = 10.0
+gravity = 0.0
+
+[node name="ProjectileTimer" parent="." index="4"]
+wait_time = 0.5
+
+[node name="ProjectileSpawnerComponent" parent="." index="5" node_paths=PackedStringArray("p_spawner_owner")]
+p_spawner_owner = NodePath("..")
+
+[editable path="Hitbox"]

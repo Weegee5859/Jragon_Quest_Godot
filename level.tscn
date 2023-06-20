@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b37qfh36q6quc" path="res://_1m x 1m.png" id="1_kv1br"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_ohqlv"]
+[ext_resource type="PackedScene" uid="uid://co5qoulnay8a2" path="res://Enemies/zombie.tscn" id="3_lvr2x"]
+[ext_resource type="PackedScene" uid="uid://jl48e5efjgfq" path="res://Components/Hitbox.tscn" id="3_u2q8p"]
+[ext_resource type="PackedScene" uid="uid://c0tqllhwoy8jp" path="res://Projectiles/fireball.tscn" id="5_fpu08"]
+[ext_resource type="Script" path="res://Projectiles/projectile.gd" id="6_jxq46"]
+
+[sub_resource type="Environment" id="Environment_f0r6j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hncyc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcm7n"]
+albedo_texture = ExtResource("1_kv1br")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ihnds"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h8n2r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4n0fl"]
+
+[node name="level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f0r6j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 33.4888, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_mask = 14
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0, 0)
+shape = SubResource("BoxShape3D_hncyc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_rcm7n")
+mesh = SubResource("BoxMesh_ihnds")
+
+[node name="Player" parent="." instance=ExtResource("1_ohqlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20674, 0)
+
+[node name="Zombie" parent="." instance=ExtResource("3_lvr2x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41295, 1.21665, -9.05725)
+collision_layer = 4
+
+[node name="MeshInstance3D" parent="Zombie/EnemyBase" index="0"]
+skeleton = NodePath("../..")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_u2q8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41295, 1.21665, 0)
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("BoxShape3D_h8n2r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
+mesh = SubResource("BoxMesh_4n0fl")
+
+[node name="Fireball" parent="." instance=ExtResource("5_fpu08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+script = ExtResource("6_jxq46")
+
+[connection signal="timeout" from="Fireball/ProjectileTimer" to="Fireball" method="_on_projectile_timer_timeout" flags=18]
+
+[editable path="Player"]
+[editable path="Player/WeaponBase/Hand/Iron_Sword"]
+[editable path="Player/WeaponBase/Hand/Iron_Sword/Hitbox"]
+[editable path="Player/Hurtbox"]
+[editable path="Zombie"]
+[editable path="Zombie/Hurtbox"]
+[editable path="Zombie/AttackRangeComponent"]
+[editable path="Zombie/Hitbox"]
+[editable path="Hitbox"]
+[editable path="Fireball"]

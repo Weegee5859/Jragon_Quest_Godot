@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0tvsah3udni5"]
+
+[ext_resource type="PackedScene" uid="uid://byqoegu6ktgcb" path="res://Projectiles/projectile.tscn" id="1_h2bhs"]
+[ext_resource type="Script" path="res://Projectiles/fireball.gd" id="1_hj361"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8ewa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjmca"]
+
+[node name="Fireball" instance=ExtResource("1_h2bhs")]
+script = ExtResource("1_hj361")
+
+[node name="ProjectileMesh" parent="." index="0"]
+mesh = SubResource("BoxMesh_j8ewa")
+
+[node name="Hitbox" parent="." index="1" node_paths=PackedStringArray("hitbox_owner", "damage")]
+hitbox_owner = NodePath("..")
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_tjmca")
+
+[node name="VelocityComponent" parent="." index="3" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+default_speed = 19.0
+gravity = 0.0
+
+[node name="ProjectileSpawnerComponent" parent="." index="5" node_paths=PackedStringArray("p_spawner_owner")]
+p_spawner_owner = NodePath("..")
+
+[editable path="Hitbox"]

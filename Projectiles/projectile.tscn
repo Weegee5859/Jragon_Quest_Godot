@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://byqoegu6ktgcb"]
+
+[ext_resource type="PackedScene" uid="uid://jl48e5efjgfq" path="res://Components/Hitbox.tscn" id="1_ok4sq"]
+[ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_y34lk"]
+[ext_resource type="PackedScene" uid="uid://5s2gsojtf10v" path="res://damage_stats.tscn" id="2_10nvf"]
+[ext_resource type="PackedScene" path="res://Components/velocity_component.tscn" id="4_4nkut"]
+[ext_resource type="PackedScene" uid="uid://jrt27ykkdi0n" path="res://Projectiles/projectile_spawner_component.tscn" id="5_y1s8j"]
+
+[node name="Projectile" type="CharacterBody3D"]
+collision_layer = 64
+script = ExtResource("1_y34lk")
+
+[node name="ProjectileMesh" type="MeshInstance3D" parent="."]
+
+[node name="Hitbox" parent="." instance=ExtResource("1_ok4sq")]
+
+[node name="DamageStats" parent="." instance=ExtResource("2_10nvf")]
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_4nkut")]
+
+[node name="ProjectileTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="ProjectileSpawnerComponent" parent="." instance=ExtResource("5_y1s8j")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]

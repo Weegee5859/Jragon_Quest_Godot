@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcp3q1k4kfh7t"]
+
+[ext_resource type="PackedScene" uid="uid://byqoegu6ktgcb" path="res://Projectiles/projectile.tscn" id="1_6qwea"]
+[ext_resource type="Script" path="res://Projectiles/earthquake.gd" id="2_i1m4u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_04yu4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8l32y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6xyu7"]
+
+[sub_resource type="Animation" id="Animation_s88ki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectileMesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_plg1b"]
+resource_name = "earthquake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ProjectileMesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.01, 3, 0.01)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q0n2h"]
+_data = {
+"RESET": SubResource("Animation_s88ki"),
+"earthquake": SubResource("Animation_plg1b")
+}
+
+[node name="Earthquake" instance=ExtResource("1_6qwea")]
+script = ExtResource("2_i1m4u")
+
+[node name="ProjectileMesh" parent="." index="0"]
+mesh = SubResource("BoxMesh_04yu4")
+
+[node name="Hitbox" parent="." index="1" node_paths=PackedStringArray("hitbox_owner", "damage")]
+hitbox_owner = NodePath("..")
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0.975854, 0)
+shape = SubResource("BoxShape3D_8l32y")
+
+[node name="DamageStats" parent="." index="2"]
+damage = 6.0
+knockback = 8.0
+
+[node name="VelocityComponent" parent="." index="3" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+default_speed = 12.0
+gravity = 150.0
+
+[node name="ProjectileTimer" parent="." index="4"]
+wait_time = 2.0
+
+[node name="ProjectileSpawnerComponent" parent="." index="5" node_paths=PackedStringArray("p_spawner_owner")]
+p_spawner_owner = NodePath("..")
+
+[node name="QuakeTimer" type="Timer" parent="." index="6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="7"]
+shape = SubResource("BoxShape3D_6xyu7")
+
+[node name="AnimationPlayer" parent="." index="8"]
+libraries = {
+"": SubResource("AnimationLibrary_q0n2h")
+}
+
+[editable path="Hitbox"]

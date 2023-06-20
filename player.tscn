@@ -1,0 +1,503 @@
+[gd_scene load_steps=23 format=3 uid="uid://cgrlcgknwlrdq"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_h3bfd"]
+[ext_resource type="PackedScene" uid="uid://b7kqika5t2krp" path="res://Items/iron_sword.tscn" id="2_5qbyc"]
+[ext_resource type="PackedScene" uid="uid://c5ypffqvrayep" path="res://Components/hurtbox.tscn" id="3_2ba7y"]
+[ext_resource type="PackedScene" path="res://Components/health_component.tscn" id="3_ewaiy"]
+[ext_resource type="AudioStream" uid="uid://d1pdta136wj7h" path="res://Audio/knife-slice-41231.mp3" id="3_jbnyu"]
+[ext_resource type="Script" path="res://Components/player_health_component.gd" id="4_fdapq"]
+[ext_resource type="PackedScene" path="res://Components/velocity_component.tscn" id="4_swj67"]
+[ext_resource type="PackedScene" path="res://Components/hitstun_component.tscn" id="5_irh2y"]
+[ext_resource type="PackedScene" uid="uid://jrt27ykkdi0n" path="res://Projectiles/projectile_spawner_component.tscn" id="7_8e64a"]
+[ext_resource type="PackedScene" uid="uid://cmhc00pii5bst" path="res://UI/bar.tscn" id="8_pab7r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_min68"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iamb5"]
+viewport_path = NodePath("UIViewport")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fgkbi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ob0e8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j2hyx"]
+
+[sub_resource type="Animation" id="Animation_qs6so"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponBase/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, 0.200143, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponBase/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4803e-15, -0.687031, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerBase:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerBase/PlayerModel:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WeaponBase:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe2:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_dsf6g"]
+resource_name = "roll"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerBase:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBase/PlayerModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"disableHurtbox"
+}, {
+"args": [],
+"method": &"enableHurtbox"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VelocityComponent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"setSpeedToDefault"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l0ery"]
+resource_name = "sword_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponBase/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1, 0, 0), Vector3(-1, 0.2, 0), Vector3(-1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponBase/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xf1wh"]
+resource_name = "sword_spin"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponBase/Hand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5708, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponBase/Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.346)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerBase:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WeaponBase:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe2:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hsjdj"]
+resource_name = "sword_swipe_1"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponBase/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.2, 0, 0), Vector3(1.13113, 0, 1.34597), Vector3(0, 0, 1.346), Vector3(-1.00881, 0, 1.25385), Vector3(-1.2, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponBase/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708), Vector3(1.4803e-15, -0.687031, -1.5708), Vector3(0, -1.5708, -1.5708), Vector3(0, -2.35619, -1.5708), Vector3(0, -3.14159, -1.5708)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s54aw"]
+resource_name = "sword_swipe_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponBase/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.2, 0, 0), Vector3(-1.00881, 0, 1.25385), Vector3(0, 0, 1.346), Vector3(1.13113, 0, 1.34597), Vector3(1.2, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponBase/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, -1.5708), Vector3(0, -2.35619, -1.5708), Vector3(0, -1.5708, -1.5708), Vector3(1.4803e-15, -0.687031, -1.5708), Vector3(0, 0, -1.5708)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponBase/Hand/Iron_Sword/Swipe2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6erdy"]
+_data = {
+"RESET": SubResource("Animation_qs6so"),
+"roll": SubResource("Animation_dsf6g"),
+"sword_idle": SubResource("Animation_l0ery"),
+"sword_spin": SubResource("Animation_xf1wh"),
+"sword_swipe_1": SubResource("Animation_hsjdj"),
+"sword_swipe_2": SubResource("Animation_s54aw")
+}
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_h3bfd")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_min68")
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14685, 0)
+
+[node name="Camera" type="Camera3D" parent="CameraBase"]
+transform = Transform3D(1, 0, 0, 0, 0.93112, 0.364714, 0, -0.364714, 0.93112, 0, 1.70805, 3.0315)
+
+[node name="UI" type="Sprite3D" parent="CameraBase/Camera"]
+transform = Transform3D(0.005, 0, 0, 0, 0.00493973, 0.000773985, 0, -0.000773985, 0.00493973, -1.1011, -0.67337, -1.08441)
+texture = SubResource("ViewportTexture_iamb5")
+
+[node name="PlayerBase" type="Node3D" parent="."]
+
+[node name="PlayerModel" type="MeshInstance3D" parent="PlayerBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02527, 0)
+mesh = SubResource("CapsuleMesh_fgkbi")
+skeleton = NodePath("../..")
+
+[node name="Front" type="MeshInstance3D" parent="PlayerBase/PlayerModel"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.516153, 0.555148)
+mesh = SubResource("BoxMesh_ob0e8")
+skeleton = NodePath("../..")
+
+[node name="WeaponBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Hand" type="Node3D" parent="WeaponBase"]
+transform = Transform3D(-3.35848e-06, 0.927759, -0.761093, -1.2, -4.34399e-06, -1.77636e-15, -2.75515e-06, 0.761093, 0.927759, -1, 0.200143, 0)
+
+[node name="Iron_Sword" parent="WeaponBase/Hand" node_paths=PackedStringArray("hitbox_component", "animation_player", "projectile_spawner", "entity") instance=ExtResource("2_5qbyc")]
+hitbox_component = NodePath("Hitbox")
+animation_player = NodePath("../../../AnimationPlayer")
+projectile_spawner = NodePath("../../../ProjectileSpawnerComponent")
+entity = NodePath("../../..")
+
+[node name="Hitbox" parent="WeaponBase/Hand/Iron_Sword" index="2" node_paths=PackedStringArray("hitbox_owner")]
+hitbox_owner = NodePath("../../../..")
+
+[node name="Swipe2" parent="WeaponBase/Hand/Iron_Sword" index="3"]
+pitch_scale = 1.47
+
+[node name="Swipe" parent="WeaponBase/Hand/Iron_Sword" index="4"]
+stream = ExtResource("3_jbnyu")
+volume_db = -14.054
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("healthOwner", "health_bar") instance=ExtResource("3_ewaiy")]
+script = ExtResource("4_fdapq")
+healthOwner = NodePath("..")
+health_bar = NodePath("../UIViewport/Bar")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component", "hitstun_component", "velocity_component", "hurtbox_owner") instance=ExtResource("3_2ba7y")]
+health_component = NodePath("../HealthComponent")
+hitstun_component = NodePath("../HitstunComponent")
+velocity_component = NodePath("../VelocityComponent")
+hurtbox_owner = NodePath("..")
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_j2hyx")
+
+[node name="HitstunComponent" parent="." instance=ExtResource("5_irh2y")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6erdy")
+}
+
+[node name="ProjectileSpawnerComponent" parent="." node_paths=PackedStringArray("p_spawner_owner") instance=ExtResource("7_8e64a")]
+p_spawner_owner = NodePath("..")
+
+[node name="UIViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(10700, 1500)
+
+[node name="Bar" parent="UIViewport" instance=ExtResource("8_pab7r")]
+value = 100.0
+
+[node name="RollCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("character") instance=ExtResource("4_swj67")]
+character = NodePath("..")
+
+[editable path="WeaponBase/Hand/Iron_Sword"]
+[editable path="WeaponBase/Hand/Iron_Sword/Hitbox"]
+[editable path="Hurtbox"]

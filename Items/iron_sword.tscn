@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7kqika5t2krp"]
+
+[ext_resource type="PackedScene" uid="uid://cadfbj5ldnf11" path="res://weapon.tscn" id="1_r7q8q"]
+[ext_resource type="PackedScene" uid="uid://jl48e5efjgfq" path="res://Components/Hitbox.tscn" id="2_v4wd8"]
+[ext_resource type="AudioStream" uid="uid://d1pdta136wj7h" path="res://Audio/knife-slice-41231.mp3" id="3_jk33y"]
+[ext_resource type="AudioStream" uid="uid://deigsg1ckcs36" path="res://Audio/slash-21834.mp3" id="3_py6dm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wtckd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vi82k"]
+
+[node name="Iron_Sword" instance=ExtResource("1_r7q8q")]
+
+[node name="WeaponMesh" parent="." index="0"]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_wtckd")
+
+[node name="DamageStats" parent="." index="1"]
+damage = 3.0
+knockback = 5.0
+
+[node name="Hitbox" parent="." index="2" node_paths=PackedStringArray("damage") instance=ExtResource("2_v4wd8")]
+damage = NodePath("../DamageStats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(0.4, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("BoxShape3D_vi82k")
+
+[node name="Swipe2" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("3_jk33y")
+volume_db = -0.014
+
+[node name="Swipe" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource("3_py6dm")
+
+[editable path="Hitbox"]

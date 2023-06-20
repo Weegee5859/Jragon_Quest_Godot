@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cadfbj5ldnf11"]
+
+[ext_resource type="Script" path="res://weapon.gd" id="1_gr2qb"]
+[ext_resource type="PackedScene" uid="uid://5s2gsojtf10v" path="res://damage_stats.tscn" id="2_8jp6h"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_gr2qb")
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+
+[node name="DamageStats" parent="." instance=ExtResource("2_8jp6h")]

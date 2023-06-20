@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://hgejjlupfre6"
+path="res://.godot/imported/character-orc.obj-6586f2c0b4ca01c2d5dc9189b8cad924.mesh"
+
+[deps]
+
+files=["res://.godot/imported/character-orc.obj-6586f2c0b4ca01c2d5dc9189b8cad924.mesh"]
+
+source_file="res://World/Tiles/character-orc.obj"
+dest_files=["res://.godot/imported/character-orc.obj-6586f2c0b4ca01c2d5dc9189b8cad924.mesh", "res://.godot/imported/character-orc.obj-6586f2c0b4ca01c2d5dc9189b8cad924.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
