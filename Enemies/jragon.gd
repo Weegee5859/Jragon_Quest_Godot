@@ -23,10 +23,14 @@ enum state {walk, idle, fireball, charge, superjump, earthquake}
 
 @onready var fireballs_left: int
 
-
+func returnplayerInRange():
+	for entity in attack_range.get_overlapping_bodies():
+		if not entity.name == "Player": return null
+		return entity
 
 func _physics_process(delta):
-	
+	move_and_slide()
+	return
 	for entity in attack_range.get_overlapping_bodies():
 		if not entity.name == "Player": return
 		if first_encounter:

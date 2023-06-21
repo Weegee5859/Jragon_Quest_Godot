@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgjdsovkgjd0k"]
+
+[ext_resource type="PackedScene" uid="uid://dd6c35vbcg0mn" path="res://StateMachine/state.tscn" id="1_36mly"]
+[ext_resource type="Script" path="res://StateMachine/States/IdleState.gd" id="2_tdgdb"]
+
+[node name="IdleState" instance=ExtResource("1_36mly")]
+script = ExtResource("2_tdgdb")

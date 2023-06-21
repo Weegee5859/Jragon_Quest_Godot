@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 0.680158, 0.733065, 0, -0.733065, 0.680158, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19733, 7.70307, -56.1788)
 
 [node name="Player" parent="." instance=ExtResource("2_2dcpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.58333, -68.8743)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9417, 5.58333, -29.1189)
 
 [node name="Jragon" parent="." instance=ExtResource("4_5h2bl")]
 transform = Transform3D(0.891022, 0, -0.453959, 0, 1, 0, 0.453959, 0, 0.891022, -16.0782, 8.69388, -21.4618)

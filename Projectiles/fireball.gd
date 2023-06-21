@@ -7,8 +7,6 @@ func _ready():
 	#position.y += 1
 	
 func _physics_process(delta):
-	
-	
 	velocity.x = velocity_component.moveIndirection(direction.x,velocity_component.speed)
 	velocity.z = velocity_component.moveIndirection(direction.z,velocity_component.speed)
 	velocity.y = velocity_component.moveIndirection(direction.y,velocity_component.speed)
