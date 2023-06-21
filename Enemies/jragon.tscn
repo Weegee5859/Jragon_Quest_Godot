@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctyh7wrwjjftr"]
+[gd_scene load_steps=21 format=3 uid="uid://ctyh7wrwjjftr"]
 
 [ext_resource type="PackedScene" uid="uid://bwykeoajgh1fe" path="res://Enemies/enemy_base.tscn" id="1_jl4wd"]
 [ext_resource type="Texture2D" uid="uid://bocvecnre5nkx" path="res://Enemies/Capture.PNG" id="2_3opao"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://b6p8tpt80r8ho" path="res://Audio/demonic-roar-40349.mp3" id="6_50ou4"]
 [ext_resource type="AudioStream" uid="uid://btyx6oabxneko" path="res://Audio/fire-magic-6947.mp3" id="7_cuf0d"]
 [ext_resource type="AudioStream" uid="uid://c0dflxuey4a4i" path="res://Audio/dark soul meme song.mp3" id="8_7bc3f"]
+[ext_resource type="PackedScene" uid="uid://bnam8ot52n632" path="res://StateMachine/state_machine.tscn" id="9_2pdi2"]
+[ext_resource type="PackedScene" uid="uid://dd6c35vbcg0mn" path="res://StateMachine/state.tscn" id="10_gf4x0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_84jy8"]
 
@@ -157,6 +159,10 @@ stream = ExtResource("7_cuf0d")
 [node name="BossTheme" type="AudioStreamPlayer" parent="." index="17"]
 stream = ExtResource("8_7bc3f")
 volume_db = -9.369
+
+[node name="StateMachine" parent="." index="18" instance=ExtResource("9_2pdi2")]
+
+[node name="State" parent="StateMachine" index="0" instance=ExtResource("10_gf4x0")]
 
 [connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
 
