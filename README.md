@@ -8,5 +8,6 @@ Shoot a projectile with your sword by double clicking your left mouse button.
 Roll to dodge attacks with the right mouse button.
 Jump with the spacebar.
 
-# Try the game out on itch.io!
+# Download
+Download and try the game out on my itch.io page!
 https://weegee5859.itch.io/jragon-quest
