@@ -35,13 +35,21 @@ environment = SubResource("Environment_8sgie")
 transform = Transform3D(1, 0, 0, 0, 0.680158, 0.733065, 0, -0.733065, 0.680158, 0, 8.19072, 7.08394)
 
 [node name="Zombie" parent="." instance=ExtResource("3_46vlj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19733, 7.70307, -56.1788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19733, 7.70307, -52.9684)
 
 [node name="Player" parent="." instance=ExtResource("2_2dcpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.58333, -68.8743)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58591, 5.58333, -67.5158)
 
 [node name="Jragon" parent="." instance=ExtResource("4_5h2bl")]
 transform = Transform3D(0.891022, 0, -0.453959, 0, 1, 0, 0.453959, 0, 0.891022, -16.0782, 8.69388, -21.4618)
 
 [node name="Zombie2" parent="." instance=ExtResource("3_46vlj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.43866, 7.74548, -61.7173)
+transform = Transform3D(0.998808, 0, -0.0488149, 0, 1, 0, 0.0488149, 0, 0.998808, -5.08331, 7.74548, -62.2787)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.999712, 0, -0.023996, 0, 1, 0, 0.023996, 0, 0.999712, 6.07606, 6.91733, -69.6827)
+text = "\"wasd\" - to move
+left click - sword swipe
+\"double left click\" - sword slash
+\"right click\" - roll
+\"spacebar\" = jump"
